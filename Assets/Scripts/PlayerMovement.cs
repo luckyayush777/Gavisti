@@ -5,6 +5,16 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private float _movementSpeed;
+    [SerializeField]
+    private float sensitivity;
+    private Camera _mainCamera;
+    [SerializeField]
+    private GameObject _gunObject;
+
+    private void Start()
+    {
+        _mainCamera = Camera.main;
+    }
     private void Update()
     {
         if (Input.GetKey(KeyCode.W))
@@ -27,10 +37,12 @@ public class PlayerMovement : MonoBehaviour
         float yMouseValue = Input.GetAxis("Mouse Y");
         if (xMouseValue != 0 || yMouseValue != 0)
         {
-            Debug.Log(xMouseValue);
-            Debug.Log(" " + yMouseValue);
+            //Debug.Log(xMouseValue);
+            //Debug.Log(" " + yMouseValue);
             //if(transform.rotation.)
-            transform.Rotate(new Vector3(0.0f, xMouseValue, yMouseValue));
+            //transform.Rotate(new Vector3(0.0f, xMouseValue * sensitivity * Time.deltaTime, yMouseValue * sensitivity * Time.deltaTime));
+            _mainCamera.transform.Rotate(new Vector3(0.0f, xMouseValue * sensitivity * Time.deltaTime, yMouseValue * sensitivity * Time.deltaTime));
+            _gunObject.transform.Rotate(new Vector3(0.0f, xMouseValue * sensitivity * Time.deltaTime, yMouseValue * sensitivity * Time.deltaTime));
         }
 
     }
