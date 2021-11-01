@@ -22,6 +22,16 @@ public class PlayerMovement : MonoBehaviour
     private float smoothTime = 0.3f;
     private Vector2 currentDir = Vector2.zero;
     private Vector2 currentDirVelocity = Vector2.zero;
+    [SerializeField]
+    private float gravity = 13.0f;
+    [SerializeField]
+    private float jumpSpeed = 0.0f;
+    float velocityY = 0.0f;
+
+    [SerializeField]
+    private Transform gunObject;
+    [SerializeField]
+    private float gunRotateSensitivity;
 
     private void Awake()
     {
@@ -29,13 +39,16 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
+        //#if UNITY_STANDALONE && !UNITY_EDITOR
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        //#endif
     }
     private void Update()
     {
         MouseUpdate();
         Movement();
+        RotateGun();
     }
 
     private void MouseUpdate()
@@ -53,7 +66,24 @@ public class PlayerMovement : MonoBehaviour
         Vector2 targetDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         targetDirection.Normalize();
         currentDir = Vector2.SmoothDamp(currentDir, targetDirection, ref currentDirVelocity, smoothTime);
-        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * movementSpeed;
+        if (playerController.isGrounded)
+            velocityY = 0.0f;
+        velocityY -= gravity * Time.deltaTime;
+        if (Input.GetButtonDown("Jump"))
+        {
+            velocityY = jumpSpeed;
+        }
+        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * movementSpeed + Vector3.up * velocityY;
         playerController.Move(velocity * Time.deltaTime);
+    }
+
+    private void RotateGun()
+    {
+        float gunRotateAmount;
+        gunRotateAmount = -currentMouseDelta.y * gunRotateSensitivity;
+        //Debug.Log(gunObject.transform.localEulerAngles);
+        gunObject.Rotate(gunRotateAmount * new Vector3(0, 0, 1));
+        //if (gunObject.transform.localEulerAngles.z > 15.0f)
+        //gunObject.transform.localEulerAngles = new Vector3(0.0f, 90.0f, 15.0f);
     }
 }

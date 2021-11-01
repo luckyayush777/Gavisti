@@ -1,30 +1,51 @@
 using UnityEngine;
-
+using Cinemachine;
+using UnityEngine.UI;
 public class GunScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Texture2D crosshairTexture;
-    public float crosshairScale = 1;
-    private void OnGUI()
+    [SerializeField]
+    private Camera _mainCamera;
+    [SerializeField]
+    private float _gunRange;
+    public delegate void OnHit();
+    public static event OnHit TargetHit;
+    private AudioSource audioSource;
+    [SerializeField]
+    private Text _ammoAmountText;
+    [SerializeField]
+    private int _amountOfBullets;
+    private int _currentAmountOfBulletsShot;
+
+
+    private void Start()
     {
-        if (Time.timeScale != 0)
+        audioSource = GetComponent<AudioSource>();
+        _ammoAmountText.text = (_amountOfBullets - _currentAmountOfBulletsShot).ToString();     
+    }
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && (_amountOfBullets - _currentAmountOfBulletsShot) > 0)
         {
-            if (crosshairTexture != null)
+            Debug.Log("clicked!");
+            _currentAmountOfBulletsShot++;
+            _ammoAmountText.text = (_amountOfBullets - _currentAmountOfBulletsShot).ToString();
+            audioSource.Play();
+            if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out RaycastHit hit, _gunRange))
             {
-                GUI.DrawTexture(new Rect((Screen.width - crosshairTexture.width * crosshairScale) / 2, (Screen.height
-                    - crosshairTexture.height * crosshairScale) / 2, crosshairTexture.width * crosshairScale,
-                      crosshairTexture.height * crosshairScale), crosshairTexture);
+                hit.collider.gameObject.GetComponent<SelectorBehaviour>().OnShot();
             }
         }
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            ReloadGun();
+        }
     }
-    void Start()
+
+    private void ReloadGun()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        _currentAmountOfBulletsShot = 0;
+        _ammoAmountText.text = _amountOfBullets.ToString();
     }
 }
