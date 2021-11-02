@@ -19,6 +19,9 @@ public class TargetHitScript : MonoBehaviour
     private float _blueAmountIncrease;
     [SerializeField]
     private GameObject _targetObject;
+    public delegate void OnMatch();
+    public static event OnMatch OnColorMatch;
+
 
 
     // Start is called before the first frame update
@@ -46,6 +49,7 @@ public class TargetHitScript : MonoBehaviour
             && _currentMaterial.color.b == _targetObject.GetComponent<MatchTarget>().colorOnTarget._b)
         {
             Debug.Log("matched Target");
+            OnColorMatch?.Invoke();
         }
     }
 
