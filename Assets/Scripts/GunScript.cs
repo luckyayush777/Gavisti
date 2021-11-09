@@ -28,13 +28,21 @@ public class GunScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && (_amountOfBullets - _currentAmountOfBulletsShot) > 0)
         {
-            Debug.Log("clicked!");
+            //Debug.Log("clicked!");
             _currentAmountOfBulletsShot++;
             _ammoAmountText.text = (_amountOfBullets - _currentAmountOfBulletsShot).ToString();
             audioSource.Play();
             if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out RaycastHit hit, _gunRange))
             {
+                if(hit.collider.gameObject.GetComponent<SelectorBehaviour>() != null)
                 hit.collider.gameObject.GetComponent<SelectorBehaviour>().OnShot();
+                if (hit.collider.gameObject.GetComponent<SelectorBehaviour>() == null &&
+                    hit.collider.gameObject.GetComponent<BoardPuzzleBehaviour>() != null)
+                {
+                    //Debug.Log("Hit Board 2 target");
+                    hit.collider.gameObject.GetComponent<BoardPuzzleBehaviour>().OnShot();
+                }
+          
             }
         }
         if(Input.GetKeyDown(KeyCode.R))

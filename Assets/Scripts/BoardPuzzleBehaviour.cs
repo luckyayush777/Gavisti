@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BoardPuzzleBehaviour : MonoBehaviour
@@ -17,5 +15,11 @@ public class BoardPuzzleBehaviour : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnShot()
+    {
+        GetComponent<MeshRenderer>().material.color = Color.red;
+        BoardBehaviour.currentShotInstance = this.gameObject;
     }
 }
