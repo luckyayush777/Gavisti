@@ -25,54 +25,6 @@ public class BoardBehaviour : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        TargetShot();
-    }
-
-    private void TargetShot()
-    {
-        if (currentShotInstance != null)
-        {
-            Debug.Log(currentShotInstance.GetComponent<BoardPuzzleBehaviour>().xCoordinate + " "
-                + currentShotInstance.GetComponent<BoardPuzzleBehaviour>().yCoordinate);
-            //Debug.Log(currentShotInstance.GetComponent<BoardPuzzleBehaviour>().yCoordinate);
-        }
-           
-        foreach(var target in targets)
-        {
-           if ( LeftCondition(currentShotInstance, target) && !_targetsSet)
-           {
-                leftTarget = target;
-                Debug.Log("left set");
-           }
-           if ( RightCondition(currentShotInstance, target) && !_targetsSet)
-           {
-                rightTarget = target;
-                Debug.Log("left set");
-
-           }
-           if ( UpCondition(currentShotInstance, target) && !_targetsSet)
-           {
-               upTarget = target;
-                Debug.Log("left set");
-
-           }
-           if ( DownCondition(currentShotInstance, target) && !_targetsSet)
-           {
-               downTarget = target;
-                Debug.Log("left set");
-
-           }
-        }
-        if ( leftTarget && rightTarget && upTarget && downTarget)
-        {
-            Debug.Log("Targets set");
-            _targetsSet = true;
-        }
-    }
-
     private void SetupTargets()
     {
         foreach (BoardPuzzleBehaviour boardTarget in GetComponentsInChildren<BoardPuzzleBehaviour>())
@@ -92,17 +44,82 @@ public class BoardBehaviour : MonoBehaviour
 
             }
         }
-        Debug.Log(targets.Count);
+    }
+    void Update()
+    {
+        TargetShot();
+    }
+
+    private void TargetShot()
+    {
+        if (currentShotInstance != null)
+        {
+            foreach (var target in targets)
+            {
+                if (LeftCondition(currentShotInstance, target) && !leftTarget)
+                {
+                    leftTarget = target;
+                    Debug.Log("left set");
+                    target.GetComponent<MeshRenderer>().material.color = Color.red;
+                }
+            }
+
+            foreach (var target in targets)
+            {
+                if (RightCondition(currentShotInstance, target) && !rightTarget)
+                {
+                    rightTarget = target;
+                    Debug.Log("right set");
+                    target.GetComponent<MeshRenderer>().material.color = Color.red;
+                }
+            }
+            foreach (var target in targets)
+            {
+                if (DownCondition(currentShotInstance, target) && !downTarget)
+                {
+                    downTarget = target;
+                    Debug.Log("down set");
+                    target.GetComponent<MeshRenderer>().material.color = Color.red;
+                }
+            }
+            foreach (var target in targets)
+            {
+                if (UpCondition(currentShotInstance, target) && !upTarget)
+                {
+                    upTarget = target;
+                    Debug.Log("up set");
+                    target.GetComponent<MeshRenderer>().material.color = Color.red;
+                }
+            }
+            if(leftTarget && rightTarget && upTarget && downTarget)
+            {
+                ResetCurrentShot();
+            }
+        }
+
+    
+    }
+    private void ResetCurrentShot()
+    {
+        currentShotInstance = null;
+        leftTarget = null;
+        rightTarget = null;
+        upTarget = null;
+        downTarget = null;
     }
 
     private bool LeftCondition(GameObject objectToCheckFor, GameObject objectToCheckAgainst)
     {
-        if (objectToCheckFor != null && (objectToCheckFor.GetComponent<BoardPuzzleBehaviour>().xCoordinate - 1
-                == objectToCheckAgainst.GetComponent<BoardPuzzleBehaviour>().xCoordinate
-                ) &&
-                (
-                objectToCheckFor.GetComponent<BoardPuzzleBehaviour>().yCoordinate ==
-                objectToCheckAgainst.GetComponent<BoardPuzzleBehaviour>().yCoordinate))
+        if(objectToCheckFor == null)
+        {
+            Debug.Log("current shot instance not found");
+            return false;
+        }
+        if (objectToCheckFor != null 
+                  && (objectToCheckFor.GetComponent<BoardPuzzleBehaviour>().xCoordinate - 1
+                  == objectToCheckAgainst.GetComponent<BoardPuzzleBehaviour>().xCoordinate) 
+                  && (objectToCheckFor.GetComponent<BoardPuzzleBehaviour>().yCoordinate 
+                  == objectToCheckAgainst.GetComponent<BoardPuzzleBehaviour>().yCoordinate))
             return true;
         else
             return false;
@@ -110,12 +127,16 @@ public class BoardBehaviour : MonoBehaviour
 
     private bool RightCondition(GameObject objectToCheckFor, GameObject objectToCheckAgainst)
     {
-        if (objectToCheckFor != null && (objectToCheckFor.GetComponent<BoardPuzzleBehaviour>().xCoordinate + 1
-                == objectToCheckAgainst.GetComponent<BoardPuzzleBehaviour>().xCoordinate
-                ) &&
-                (
-                objectToCheckFor.GetComponent<BoardPuzzleBehaviour>().yCoordinate ==
-                objectToCheckAgainst.GetComponent<BoardPuzzleBehaviour>().yCoordinate))
+        if (objectToCheckFor == null)
+        {
+            Debug.Log("current shot instance not found");
+            return false;
+        }
+        if (objectToCheckFor != null 
+                && (objectToCheckFor.GetComponent<BoardPuzzleBehaviour>().xCoordinate + 1
+                == objectToCheckAgainst.GetComponent<BoardPuzzleBehaviour>().xCoordinate)
+                && (objectToCheckFor.GetComponent<BoardPuzzleBehaviour>().yCoordinate 
+                == objectToCheckAgainst.GetComponent<BoardPuzzleBehaviour>().yCoordinate))
             return true;
         else
             return false;
@@ -123,12 +144,16 @@ public class BoardBehaviour : MonoBehaviour
 
     private bool UpCondition(GameObject objectToCheckFor, GameObject objectToCheckAgainst)
     {
-        if (objectToCheckFor != null && (objectToCheckFor.GetComponent<BoardPuzzleBehaviour>().xCoordinate
-                == objectToCheckAgainst.GetComponent<BoardPuzzleBehaviour>().xCoordinate
-                ) &&
-                (
-                objectToCheckFor.GetComponent<BoardPuzzleBehaviour>().yCoordinate - 1 ==
-                objectToCheckAgainst.GetComponent<BoardPuzzleBehaviour>().yCoordinate))
+        if (objectToCheckFor == null)
+        {
+            Debug.Log("current shot instance not found");
+            return false;
+        }
+        if (objectToCheckFor != null 
+                && (objectToCheckFor.GetComponent<BoardPuzzleBehaviour>().xCoordinate
+                ==  objectToCheckAgainst.GetComponent<BoardPuzzleBehaviour>().xCoordinate) 
+                && (objectToCheckFor.GetComponent<BoardPuzzleBehaviour>().yCoordinate - 1 
+                ==  objectToCheckAgainst.GetComponent<BoardPuzzleBehaviour>().yCoordinate))
             return true;
         else
             return false;
@@ -137,16 +162,31 @@ public class BoardBehaviour : MonoBehaviour
 
     private bool DownCondition(GameObject objectToCheckFor, GameObject objectToCheckAgainst)
     {
-        if (objectToCheckFor != null && (objectToCheckFor.GetComponent<BoardPuzzleBehaviour>().xCoordinate
-                == objectToCheckAgainst.GetComponent<BoardPuzzleBehaviour>().xCoordinate
-                ) &&
-                (
-                objectToCheckFor.GetComponent<BoardPuzzleBehaviour>().yCoordinate  + 1 ==
-                objectToCheckAgainst.GetComponent<BoardPuzzleBehaviour>().yCoordinate))
+        if (objectToCheckFor == null)
+        {
+            Debug.Log("current shot instance not found");
+            return false;
+        }
+        if (objectToCheckFor != null 
+                && (objectToCheckFor.GetComponent<BoardPuzzleBehaviour>().xCoordinate
+                == objectToCheckAgainst.GetComponent<BoardPuzzleBehaviour>().xCoordinate)
+                && (objectToCheckFor.GetComponent<BoardPuzzleBehaviour>().yCoordinate + 1 
+                ==  objectToCheckAgainst.GetComponent<BoardPuzzleBehaviour>().yCoordinate))
             return true;
         else
             return false;
     }
+
+  
+
+    private void ChangeSurroundingTargets()
+    {
+        
+    }
+
+
+
+   
 
 
 }

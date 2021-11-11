@@ -20,6 +20,6 @@ public class BoardPuzzleBehaviour : MonoBehaviour
     public void OnShot()
     {
         GetComponent<MeshRenderer>().material.color = Color.red;
-        BoardBehaviour.currentShotInstance = this.gameObject;
+        BoardBehaviour.currentShotInstance = gameObject;
     }
 }

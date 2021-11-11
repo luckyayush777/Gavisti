@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //#if UNITY_STANDALONE && !UNITY_EDITOR
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.visible = false;
         //#endif
     }
     private void Update()

@@ -24,19 +24,19 @@ public class SelectorBehaviour : MonoBehaviour
     {
         if(_selectorColor == "red")
         {
-            Debug.Log("hit red");
+            //Debug.Log("hit red");
             _hitScript.IncreaseRed();
         }
         else if (_selectorColor == "blue")
         {
-            Debug.Log("hit blue");
+            //Debug.Log("hit blue");
             _hitScript.IncreaseBlue();
 
         }
         else if (_selectorColor == "green")
         {
             _hitScript.IncreaseGreen();
-            Debug.Log("hit green");
+            //Debug.Log("hit green");
         }
     }
 

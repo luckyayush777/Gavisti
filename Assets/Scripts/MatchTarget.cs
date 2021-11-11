@@ -23,7 +23,7 @@ public class MatchTarget : MonoBehaviour
     {
         ColorStruct color = GenRandomNumbers();
         GetComponent<MeshRenderer>().material.color = new Color(color._r, color._g, color._b);
-        Debug.Log(color._r + " " + color._g + " " + color._b);
+        //Debug.Log(color._r + " " + color._g + " " + color._b);
 
     }
 
