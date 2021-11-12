@@ -234,6 +234,9 @@ MonoBehaviour:
   _isTarget: 1
   xCoordinate: 0
   yCoordinate: 0
+  _targetRedIncrease: 0
+  _targetGreenIncrease: 0
+  _targetBlueIncrease: 0
 --- !u!1 &52392377
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,6 +348,9 @@ MonoBehaviour:
   _isTarget: 1
   xCoordinate: 0
   yCoordinate: 0
+  _targetRedIncrease: 0
+  _targetGreenIncrease: 0
+  _targetBlueIncrease: 0
 --- !u!1 &128947238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,6 +1314,9 @@ MonoBehaviour:
   _isTarget: 1
   xCoordinate: 0
   yCoordinate: 0
+  _targetRedIncrease: 0
+  _targetGreenIncrease: 0
+  _targetBlueIncrease: 0
 --- !u!1001 &647707249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1485,6 +1494,9 @@ MonoBehaviour:
   _isTarget: 1
   xCoordinate: 0
   yCoordinate: 0
+  _targetRedIncrease: 0
+  _targetGreenIncrease: 0
+  _targetBlueIncrease: 0
 --- !u!1001 &700535864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1941,6 +1953,9 @@ MonoBehaviour:
   _isTarget: 1
   xCoordinate: 0
   yCoordinate: 0
+  _targetRedIncrease: 0
+  _targetGreenIncrease: 0
+  _targetBlueIncrease: 0
 --- !u!1 &774681712
 GameObject:
   m_ObjectHideFlags: 0
@@ -2052,6 +2067,9 @@ MonoBehaviour:
   _isTarget: 1
   xCoordinate: 0
   yCoordinate: 0
+  _targetRedIncrease: 0
+  _targetGreenIncrease: 0
+  _targetBlueIncrease: 0
 --- !u!1 &820415181
 GameObject:
   m_ObjectHideFlags: 0
@@ -2163,6 +2181,9 @@ MonoBehaviour:
   _isTarget: 1
   xCoordinate: 0
   yCoordinate: 0
+  _targetRedIncrease: 0
+  _targetGreenIncrease: 0
+  _targetBlueIncrease: 0
 --- !u!1 &863121870
 GameObject:
   m_ObjectHideFlags: 0
@@ -2274,6 +2295,9 @@ MonoBehaviour:
   _isTarget: 1
   xCoordinate: 0
   yCoordinate: 0
+  _targetRedIncrease: 0
+  _targetGreenIncrease: 0
+  _targetBlueIncrease: 0
 --- !u!1 &905687715
 GameObject:
   m_ObjectHideFlags: 0
@@ -2590,6 +2614,9 @@ MonoBehaviour:
   _isTarget: 1
   xCoordinate: 0
   yCoordinate: 0
+  _targetRedIncrease: 0
+  _targetGreenIncrease: 0
+  _targetBlueIncrease: 0
 --- !u!1 &1081730024
 GameObject:
   m_ObjectHideFlags: 0
@@ -2701,6 +2728,9 @@ MonoBehaviour:
   _isTarget: 1
   xCoordinate: 0
   yCoordinate: 0
+  _targetRedIncrease: 0
+  _targetGreenIncrease: 0
+  _targetBlueIncrease: 0
 --- !u!1 &1119407192
 GameObject:
   m_ObjectHideFlags: 0
@@ -2732,6 +2762,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
+  _targetSurroundObjectRedIncrease: 0.05
+  _targetSurroundObjectGreenIncrease: 0.05
+  _targetSurroundingObjectBlueIncrease: 0.05
+  testColor: {r: 0.3225646, g: 0, b: 1, a: 0}
 --- !u!114 &1119407195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2974,6 +3008,9 @@ MonoBehaviour:
   _isTarget: 1
   xCoordinate: 0
   yCoordinate: 0
+  _targetRedIncrease: 0
+  _targetGreenIncrease: 0
+  _targetBlueIncrease: 0
 --- !u!1 &1528058261
 GameObject:
   m_ObjectHideFlags: 0
@@ -3387,6 +3424,9 @@ MonoBehaviour:
   _isTarget: 1
   xCoordinate: 0
   yCoordinate: 0
+  _targetRedIncrease: 0
+  _targetGreenIncrease: 0
+  _targetBlueIncrease: 0
 --- !u!1 &1882849062
 GameObject:
   m_ObjectHideFlags: 0
@@ -3593,6 +3633,9 @@ MonoBehaviour:
   _isTarget: 1
   xCoordinate: 0
   yCoordinate: 0
+  _targetRedIncrease: 0
+  _targetGreenIncrease: 0
+  _targetBlueIncrease: 0
 --- !u!1 &1909205041
 GameObject:
   m_ObjectHideFlags: 0
@@ -3704,6 +3747,9 @@ MonoBehaviour:
   _isTarget: 1
   xCoordinate: 0
   yCoordinate: 0
+  _targetRedIncrease: 0
+  _targetGreenIncrease: 0
+  _targetBlueIncrease: 0
 --- !u!1 &1913874895
 GameObject:
   m_ObjectHideFlags: 0
@@ -3815,6 +3861,9 @@ MonoBehaviour:
   _isTarget: 1
   xCoordinate: 0
   yCoordinate: 0
+  _targetRedIncrease: 0
+  _targetGreenIncrease: 0
+  _targetBlueIncrease: 0
 --- !u!1 &2078041180
 GameObject:
   m_ObjectHideFlags: 0
@@ -3926,6 +3975,9 @@ MonoBehaviour:
   _isTarget: 1
   xCoordinate: 0
   yCoordinate: 0
+  _targetRedIncrease: 0
+  _targetGreenIncrease: 0
+  _targetBlueIncrease: 0
 --- !u!1 &2108185538
 GameObject:
   m_ObjectHideFlags: 0

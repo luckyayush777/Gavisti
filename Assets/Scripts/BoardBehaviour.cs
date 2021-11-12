@@ -18,11 +18,24 @@ public class BoardBehaviour : MonoBehaviour
     private int xCount = 1;
     private int yCount = 1;
     public static GameObject currentShotInstance;
+    [SerializeField]
+    private float _targetSurroundObjectRedIncrease;
+    [SerializeField]
+    private float _targetSurroundObjectGreenIncrease;
+    [SerializeField]
+    private float _targetSurroundingObjectBlueIncrease;
+    [SerializeField]
+    private Color testColor;
     void Start()
     {
         SetupTargets();
     
 
+    }
+
+    void Update()
+    {
+        TargetShot();
     }
 
     private void SetupTargets()
@@ -45,13 +58,11 @@ public class BoardBehaviour : MonoBehaviour
             }
         }
     }
-    void Update()
-    {
-        TargetShot();
-    }
+
 
     private void TargetShot()
     {
+        
         if (currentShotInstance != null)
         {
             foreach (var target in targets)
@@ -60,7 +71,17 @@ public class BoardBehaviour : MonoBehaviour
                 {
                     leftTarget = target;
                     Debug.Log("left set");
-                    target.GetComponent<MeshRenderer>().material.color = Color.red;
+                    Color leftTargetColor = target.GetComponent<MeshRenderer>().material.color ;
+                    /*if (leftTargetColor.r >= 0.0f)
+                        leftTargetColor.r += _targetSurroundObjectRedIncrease;
+                    else if (leftTargetColor.r >= 1.0f)
+                        leftTargetColor.g += _targetSurroundObjectGreenIncrease;
+                    else if (leftTargetColor.r >= 1.0f && leftTargetColor.g >= 1.0f)
+                        leftTargetColor.b += _targetSurroundingObjectBlueIncrease;
+                    */
+                    leftTargetColor = Color.red;
+                    target.GetComponent<MeshRenderer>().material.color = leftTargetColor;
+
                 }
             }
 
@@ -70,7 +91,16 @@ public class BoardBehaviour : MonoBehaviour
                 {
                     rightTarget = target;
                     Debug.Log("right set");
-                    target.GetComponent<MeshRenderer>().material.color = Color.red;
+                    Color rightTargetColor = target.GetComponent<MeshRenderer>().material.color;
+                    /*if (rightTargetColor.r >= 0.0f)
+                        rightTargetColor.r += _targetSurroundObjectRedIncrease;
+                    else if (rightTargetColor.r >= 1.0f)
+                        rightTargetColor.g += _targetSurroundObjectGreenIncrease;
+                    else if (rightTargetColor.r >= 1.0f && rightTargetColor.g >= 1.0f)
+                        rightTargetColor.b += _targetSurroundingObjectBlueIncrease;
+                    */
+                    rightTargetColor = Color.red;
+                    target.GetComponent<MeshRenderer>().material.color = rightTargetColor;
                 }
             }
             foreach (var target in targets)
@@ -79,7 +109,19 @@ public class BoardBehaviour : MonoBehaviour
                 {
                     downTarget = target;
                     Debug.Log("down set");
-                    target.GetComponent<MeshRenderer>().material.color = Color.red;
+                    Color downTargetColor = target.GetComponent<MeshRenderer>().material.color;
+                    /*
+                    if (downTargetColor.r >= 0.0f)
+                        downTargetColor.r += _targetSurroundObjectRedIncrease;
+                    else if (downTargetColor.r >= 1.0f)
+                        downTargetColor.g += _targetSurroundObjectGreenIncrease;
+                    else if (downTargetColor.r >= 1.0f && downTargetColor.g >= 1.0f)
+                        downTargetColor.b += _targetSurroundingObjectBlueIncrease;
+                    //downTargetColor.g += _targetSurroundObjectGreenIncrease;
+                    //downTargetColor.b += _targetSurroundingObjectBlueIncrease;
+                    */
+                    downTargetColor = Color.red;
+                    target.GetComponent<MeshRenderer>().material.color = downTargetColor;
                 }
             }
             foreach (var target in targets)
@@ -88,13 +130,21 @@ public class BoardBehaviour : MonoBehaviour
                 {
                     upTarget = target;
                     Debug.Log("up set");
-                    target.GetComponent<MeshRenderer>().material.color = Color.red;
+                    Color upTargetColor = target.GetComponent<MeshRenderer>().material.color;
+                    /*
+                    if (upTargetColor.r >= 0.0f)
+                        upTargetColor.r += _targetSurroundObjectRedIncrease;
+                    else if (upTargetColor.r >= 1.0f)
+                        upTargetColor.g += _targetSurroundObjectGreenIncrease;
+                    else if (upTargetColor.r >= 1.0f && upTargetColor.g >= 1.0f)
+                        upTargetColor.b += _targetSurroundingObjectBlueIncrease;
+                    */
+                    upTargetColor = Color.red;
+                    target.GetComponent<MeshRenderer>().material.color = upTargetColor;
                 }
             }
-            if(leftTarget && rightTarget && upTarget && downTarget)
-            {
-                ResetCurrentShot();
-            }
+            ResetCurrentShot();
+            print("Reset Shot");
         }
 
     
