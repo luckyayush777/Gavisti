@@ -18,14 +18,8 @@ public class BoardBehaviour : MonoBehaviour
     private int xCount = 1;
     private int yCount = 1;
     public static GameObject currentShotInstance;
-    [SerializeField]
-    private float _targetSurroundObjectRedIncrease;
-    [SerializeField]
-    private float _targetSurroundObjectGreenIncrease;
-    [SerializeField]
-    private float _targetSurroundingObjectBlueIncrease;
-    [SerializeField]
-    private Color testColor;
+    private static int _boardLength = 5;
+    private static int _boardWidth = 5;
     void Start()
     {
         SetupTargets();
@@ -47,7 +41,7 @@ public class BoardBehaviour : MonoBehaviour
                 boardTarget.xCoordinate = xCount;
                 boardTarget.yCoordinate = yCount;
                 xCount++;
-                if (xCount > 4)
+                if (xCount > 5)
                 {
                     yCount++;
                     xCount = 1;
@@ -227,16 +221,19 @@ public class BoardBehaviour : MonoBehaviour
             return false;
     }
 
-  
-
-    private void ChangeSurroundingTargets()
+    public static int GetBoardLength()
     {
-        
+        return _boardLength;    
+    }
+
+    public static int GetBoardWidth()
+    {
+        return _boardWidth;
     }
 
 
 
-   
+
 
 
 }
