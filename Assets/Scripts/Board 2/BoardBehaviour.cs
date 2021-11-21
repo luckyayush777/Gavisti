@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BoardBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
 
     [SerializeField]
     List<GameObject> targets = new List<GameObject>();
@@ -13,7 +12,6 @@ public class BoardBehaviour : MonoBehaviour
     private GameObject rightTarget;
     private GameObject upTarget;
     private GameObject downTarget;
-    private bool _targetsSet = false;
 
     private int xCount = 1;
     private int yCount = 1;
@@ -66,13 +64,6 @@ public class BoardBehaviour : MonoBehaviour
                     leftTarget = target;
                     Debug.Log("left set");
                     Color leftTargetColor = target.GetComponent<MeshRenderer>().material.color ;
-                    /*if (leftTargetColor.r >= 0.0f)
-                        leftTargetColor.r += _targetSurroundObjectRedIncrease;
-                    else if (leftTargetColor.r >= 1.0f)
-                        leftTargetColor.g += _targetSurroundObjectGreenIncrease;
-                    else if (leftTargetColor.r >= 1.0f && leftTargetColor.g >= 1.0f)
-                        leftTargetColor.b += _targetSurroundingObjectBlueIncrease;
-                    */
                     leftTargetColor = Color.red;
                     target.GetComponent<MeshRenderer>().material.color = leftTargetColor;
 
@@ -86,13 +77,6 @@ public class BoardBehaviour : MonoBehaviour
                     rightTarget = target;
                     Debug.Log("right set");
                     Color rightTargetColor = target.GetComponent<MeshRenderer>().material.color;
-                    /*if (rightTargetColor.r >= 0.0f)
-                        rightTargetColor.r += _targetSurroundObjectRedIncrease;
-                    else if (rightTargetColor.r >= 1.0f)
-                        rightTargetColor.g += _targetSurroundObjectGreenIncrease;
-                    else if (rightTargetColor.r >= 1.0f && rightTargetColor.g >= 1.0f)
-                        rightTargetColor.b += _targetSurroundingObjectBlueIncrease;
-                    */
                     rightTargetColor = Color.red;
                     target.GetComponent<MeshRenderer>().material.color = rightTargetColor;
                 }
@@ -104,16 +88,6 @@ public class BoardBehaviour : MonoBehaviour
                     downTarget = target;
                     Debug.Log("down set");
                     Color downTargetColor = target.GetComponent<MeshRenderer>().material.color;
-                    /*
-                    if (downTargetColor.r >= 0.0f)
-                        downTargetColor.r += _targetSurroundObjectRedIncrease;
-                    else if (downTargetColor.r >= 1.0f)
-                        downTargetColor.g += _targetSurroundObjectGreenIncrease;
-                    else if (downTargetColor.r >= 1.0f && downTargetColor.g >= 1.0f)
-                        downTargetColor.b += _targetSurroundingObjectBlueIncrease;
-                    //downTargetColor.g += _targetSurroundObjectGreenIncrease;
-                    //downTargetColor.b += _targetSurroundingObjectBlueIncrease;
-                    */
                     downTargetColor = Color.red;
                     target.GetComponent<MeshRenderer>().material.color = downTargetColor;
                 }
@@ -123,22 +97,12 @@ public class BoardBehaviour : MonoBehaviour
                 if (UpCondition(currentShotInstance, target) && !upTarget)
                 {
                     upTarget = target;
-                    Debug.Log("up set");
                     Color upTargetColor = target.GetComponent<MeshRenderer>().material.color;
-                    /*
-                    if (upTargetColor.r >= 0.0f)
-                        upTargetColor.r += _targetSurroundObjectRedIncrease;
-                    else if (upTargetColor.r >= 1.0f)
-                        upTargetColor.g += _targetSurroundObjectGreenIncrease;
-                    else if (upTargetColor.r >= 1.0f && upTargetColor.g >= 1.0f)
-                        upTargetColor.b += _targetSurroundingObjectBlueIncrease;
-                    */
                     upTargetColor = Color.red;
                     target.GetComponent<MeshRenderer>().material.color = upTargetColor;
                 }
             }
             ResetCurrentShot();
-            print("Reset Shot");
         }
 
     

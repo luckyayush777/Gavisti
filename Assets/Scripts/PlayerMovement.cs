@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float mouseSensitivity;
     [SerializeField]
-    private bool cursorLocked = true;
+    //private bool cursorLocked = true;
     private float cameraPitch;
     [SerializeField]
     private float mouseSmoothTime = 0.03f;

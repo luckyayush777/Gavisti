@@ -10,12 +10,12 @@ public class PuzzleDisplay : MonoBehaviour
     [SerializeField]
     private Material _material;
     [SerializeField]
-    readonly List<GameObject> displayPieces = new List<GameObject>();
-    Piece _pieceToChange;
+    private List<GameObject> _displayPieces = new List<GameObject>();
+    private Piece _pieceToChange;
     private int _xCount = 1;
     private int _yCount = 1;
     private int _boardLength = 5;
-    private int _boardWidth = 5;
+    //private int _boardWidth = 5;
     private void Awake()
     {
         InitiatePieces();
@@ -24,22 +24,11 @@ public class PuzzleDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        Piece randomPiece = GetRandomIndexes();
-        //Debug.Log(randomPiece.GetXCoordinate() + " " + randomPiece.GetYCoordinate());
-        foreach(GameObject piece in displayPieces)
-        {
-            //print(piece.GetComponent<BoardPuzzleBehaviour>().xCoordinate +
-            //    " " + piece.GetComponent<BoardPuzzleBehaviour>().yCoordinate);
-            if(piece.GetComponent<BoardPuzzleBehaviour>().xCoordinate ==
-                randomPiece.GetXCoordinate() &&
-                piece.GetComponent<BoardPuzzleBehaviour>().yCoordinate == 
-                randomPiece.GetYCoordinate())
-            {
-                //print("found tile");
-                piece.GetComponent<MeshRenderer>().material.color = Color.green;
-            }
-        }
+
+        GetCenterAndSurroundingPiecesAndChangeColor();
+        GetCenterAndSurroundingPiecesAndChangeColor();
+        GetCenterAndSurroundingPiecesAndChangeColor();
+
     }
 
     private void InitiatePieces()
@@ -56,7 +45,7 @@ public class PuzzleDisplay : MonoBehaviour
                     _yCount++;
                     _xCount = 1;
                 }
-                displayPieces.Add(childObject.gameObject);
+                _displayPieces.Add(childObject.gameObject);
             }
         }
     }
@@ -67,37 +56,78 @@ public class PuzzleDisplay : MonoBehaviour
         return randomPiece;
     }
 
-    // Update is called once per frame
-    void Update()
+    private Piece[] ReturnSurroundingPieceIndexes(Piece pieceToGetSurroundingPiecesFor)
     {
+        Piece[] surroundingPieces = new Piece[4];
+        for(int i = 0; i < 4; i++)
+        {
+            surroundingPieces[i] = new Piece();
+        }
+        if (pieceToGetSurroundingPiecesFor == null)
+        {
+            print("cant find neighbouring piece for a null piece");
+            return surroundingPieces;
+        }
+        surroundingPieces[0].XCoordinate = pieceToGetSurroundingPiecesFor.GetXCoordinate() - 1;
+        surroundingPieces[0].YCoordinate = pieceToGetSurroundingPiecesFor.GetYCoordinate();
+        surroundingPieces[1].SetXCoordinate(pieceToGetSurroundingPiecesFor.GetXCoordinate() + 1);
+        surroundingPieces[1].SetYCoordinate(pieceToGetSurroundingPiecesFor.GetYCoordinate());
+
+
+        surroundingPieces[2].SetXCoordinate(pieceToGetSurroundingPiecesFor.GetXCoordinate());
+        surroundingPieces[2].SetYCoordinate(pieceToGetSurroundingPiecesFor.GetYCoordinate() - 1);
+
+        surroundingPieces[3].SetXCoordinate(pieceToGetSurroundingPiecesFor.GetXCoordinate());
+        surroundingPieces[3].SetYCoordinate(pieceToGetSurroundingPiecesFor.GetYCoordinate() + 1);
         
+        return surroundingPieces;
     }
-   
-
-
-    public Mesh GenerateQuad()
+    //Function too big, needs to be broken down
+    private void GetCenterAndSurroundingPiecesAndChangeColor()
     {
-        Mesh newMesh = new Mesh();
-        Vector3[] vertices = new Vector3[4];
-        Vector2[] uv = new Vector2[4];
-        int[] triangles = new int[6];
-        vertices[0] = new Vector3(0, 1);
-        vertices[1] = new Vector3(1, 1);
-        vertices[2] = new Vector3(1, 0);
-        vertices[3] = new Vector3(0, 0);
-        uv[0] = new Vector2(0, 1);
-        uv[1] = new Vector2(1, 1);
-        uv[2] = new Vector2(1, 0);
-        uv[3] = new Vector2(0, 0);
-        triangles[0] = 0;
-        triangles[1] = 1;
-        triangles[2] = 3;
-        triangles[3] = 3;
-        triangles[4] = 1;
-        triangles[5] = 2;
-        newMesh.vertices = vertices;
-        newMesh.uv = uv;
-        newMesh.triangles = triangles;
-        return newMesh;
+        Piece randomPiece = GetRandomIndexes();
+        Piece[] piecesSurroundingRandomPiece = ReturnSurroundingPieceIndexes(randomPiece);
+        foreach (GameObject piece in _displayPieces)
+        {
+            if (piece.GetComponent<BoardPuzzleBehaviour>().xCoordinate ==
+                randomPiece.GetXCoordinate() &&
+                piece.GetComponent<BoardPuzzleBehaviour>().yCoordinate ==
+                randomPiece.GetYCoordinate())
+            {
+                piece.GetComponent<MeshRenderer>().material.color = Color.green;
+            }
+
+            if (piece.GetComponent<BoardPuzzleBehaviour>().xCoordinate ==
+                piecesSurroundingRandomPiece[0].GetXCoordinate() &&
+                piece.GetComponent<BoardPuzzleBehaviour>().yCoordinate ==
+                piecesSurroundingRandomPiece[0].GetYCoordinate())
+            {
+                piece.GetComponent<MeshRenderer>().material.color = Color.green;
+            }
+
+            if (piece.GetComponent<BoardPuzzleBehaviour>().xCoordinate ==
+               piecesSurroundingRandomPiece[1].GetXCoordinate() &&
+               piece.GetComponent<BoardPuzzleBehaviour>().yCoordinate ==
+               piecesSurroundingRandomPiece[1].GetYCoordinate())
+            {
+                piece.GetComponent<MeshRenderer>().material.color = Color.green;
+            }
+
+            if (piece.GetComponent<BoardPuzzleBehaviour>().xCoordinate ==
+               piecesSurroundingRandomPiece[2].GetXCoordinate() &&
+               piece.GetComponent<BoardPuzzleBehaviour>().yCoordinate ==
+               piecesSurroundingRandomPiece[2].GetYCoordinate())
+            {
+                piece.GetComponent<MeshRenderer>().material.color = Color.green;
+            }
+
+            if (piece.GetComponent<BoardPuzzleBehaviour>().xCoordinate ==
+               piecesSurroundingRandomPiece[3].GetXCoordinate() &&
+               piece.GetComponent<BoardPuzzleBehaviour>().yCoordinate ==
+               piecesSurroundingRandomPiece[3].GetYCoordinate())
+            {
+                piece.GetComponent<MeshRenderer>().material.color = Color.green;
+            }
+        }
     }
 }

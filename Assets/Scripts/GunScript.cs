@@ -8,7 +8,7 @@ public class GunScript : MonoBehaviour
     [SerializeField]
     private float _gunRange;
     public delegate void OnHit();
-    public static event OnHit TargetHit;
+    //public static event OnHit TargetHit;
     private AudioSource audioSource;
     [SerializeField]
     private Text _ammoAmountText;

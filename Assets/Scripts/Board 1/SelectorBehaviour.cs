@@ -11,10 +11,8 @@ public class SelectorBehaviour : MonoBehaviour
     TargetHitScript _hitScript;
     void Start()
     {
-        //ResetSetup();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
