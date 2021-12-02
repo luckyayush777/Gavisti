@@ -2,7 +2,6 @@ public class Piece
 {
     private int _xCoordinate;
     private int _yCoordinate;
-
     public int XCoordinate {
         get
         {

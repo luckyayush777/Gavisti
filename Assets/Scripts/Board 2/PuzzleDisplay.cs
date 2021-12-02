@@ -15,7 +15,8 @@ public class PuzzleDisplay : MonoBehaviour
     private int _xCount = 1;
     private int _yCount = 1;
     private int _boardLength = 5;
-    //private int _boardWidth = 5;
+
+
     private void Awake()
     {
         InitiatePieces();
@@ -28,6 +29,7 @@ public class PuzzleDisplay : MonoBehaviour
         GetCenterAndSurroundingPiecesAndChangeColor();
         GetCenterAndSurroundingPiecesAndChangeColor();
         GetCenterAndSurroundingPiecesAndChangeColor();
+        BoardBehaviour.listOfPuzzlePieces = _displayPieces;
 
     }
 
@@ -95,6 +97,7 @@ public class PuzzleDisplay : MonoBehaviour
                 randomPiece.GetYCoordinate())
             {
                 piece.GetComponent<MeshRenderer>().material.color = Color.green;
+                piece.GetComponent<BoardPuzzleBehaviour>().isSpherePatternPart = true;
             }
 
             if (piece.GetComponent<BoardPuzzleBehaviour>().xCoordinate ==
@@ -103,6 +106,8 @@ public class PuzzleDisplay : MonoBehaviour
                 piecesSurroundingRandomPiece[0].GetYCoordinate())
             {
                 piece.GetComponent<MeshRenderer>().material.color = Color.green;
+                piece.GetComponent<BoardPuzzleBehaviour>().isSpherePatternPart = true;
+
             }
 
             if (piece.GetComponent<BoardPuzzleBehaviour>().xCoordinate ==
@@ -111,6 +116,8 @@ public class PuzzleDisplay : MonoBehaviour
                piecesSurroundingRandomPiece[1].GetYCoordinate())
             {
                 piece.GetComponent<MeshRenderer>().material.color = Color.green;
+                piece.GetComponent<BoardPuzzleBehaviour>().isSpherePatternPart = true;
+
             }
 
             if (piece.GetComponent<BoardPuzzleBehaviour>().xCoordinate ==
@@ -119,6 +126,8 @@ public class PuzzleDisplay : MonoBehaviour
                piecesSurroundingRandomPiece[2].GetYCoordinate())
             {
                 piece.GetComponent<MeshRenderer>().material.color = Color.green;
+                piece.GetComponent<BoardPuzzleBehaviour>().isSpherePatternPart = true;
+
             }
 
             if (piece.GetComponent<BoardPuzzleBehaviour>().xCoordinate ==
@@ -127,6 +136,8 @@ public class PuzzleDisplay : MonoBehaviour
                piecesSurroundingRandomPiece[3].GetYCoordinate())
             {
                 piece.GetComponent<MeshRenderer>().material.color = Color.green;
+                piece.GetComponent<BoardPuzzleBehaviour>().isSpherePatternPart = true;
+
             }
         }
     }

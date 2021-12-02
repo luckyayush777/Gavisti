@@ -81,9 +81,6 @@ public class PlayerMovement : MonoBehaviour
     {
         float gunRotateAmount;
         gunRotateAmount = -currentMouseDelta.y * gunRotateSensitivity;
-        //Debug.Log(gunObject.transform.localEulerAngles);
         gunObject.Rotate(gunRotateAmount * new Vector3(0, 0, 1));
-        //if (gunObject.transform.localEulerAngles.z > 15.0f)
-        //gunObject.transform.localEulerAngles = new Vector3(0.0f, 90.0f, 15.0f);
     }
 }
