@@ -9,6 +9,10 @@ public class Puzzle2Barrier : MonoBehaviour
     private float _moveSpeed;
     [SerializeField]
     private Vector3 _moveDirection;
+    [SerializeField]
+    private Vector3 _targetPosition;
+    [SerializeField]
+    private float _smoothFactor;
 
     private void OnEnable()
     {

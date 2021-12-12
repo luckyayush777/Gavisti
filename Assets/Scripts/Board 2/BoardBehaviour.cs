@@ -20,7 +20,7 @@ public class BoardBehaviour : MonoBehaviour
     public static GameObject currentShotInstance;
     private static int _boardLength = 5;
     private static int _boardWidth = 5;
-    private bool patternMatched = false;
+    //private bool patternMatched = false;
 
     public static event TargetHitScript.OnMatch OnPatternMatch;
 
@@ -36,7 +36,7 @@ public class BoardBehaviour : MonoBehaviour
             //print(listOfPuzzlePieces.Count);
             listOfPatternBools.Add(listOfPuzzlePieces[i].GetComponent<BoardPuzzleBehaviour>().isSpherePatternPart);
         }
-        print(listOfPatternBools.Count);    
+        //print(listOfPatternBools.Count);    
         InvokeRepeating("CheckForMatchesWithDisplayBoard", 0.0f, 0.5f);
     }
     void Update()

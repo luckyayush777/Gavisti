@@ -83,4 +83,13 @@ public class PlayerMovement : MonoBehaviour
         gunRotateAmount = -currentMouseDelta.y * gunRotateSensitivity;
         gunObject.Rotate(gunRotateAmount * new Vector3(0, 0, 1));
     }
+
+    //IDEALLY THIS SHOULD BE TRIGGERED FROM THE PIECE SCRIPT, BUT LIMITATION OF CHARACTER CONTROLLER
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.gameObject.tag == "droppablePiece" && !hit.gameObject.GetComponent<Puzzle3Piece>().IsPartOfPath)
+        {
+            hit.gameObject.GetComponent<Puzzle3Piece>().DropPiece();
+        }
+    }
 }
