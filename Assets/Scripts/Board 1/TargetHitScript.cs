@@ -48,7 +48,7 @@ public class TargetHitScript : MonoBehaviour
             && _currentMaterial.color.g == _targetObject.GetComponent<MatchTarget>().colorOnTarget._g
             && _currentMaterial.color.b == _targetObject.GetComponent<MatchTarget>().colorOnTarget._b)
         {
-            Debug.Log("matched Target");
+            //Debug.Log("matched Target");
             OnColorMatch?.Invoke();
         }
     }

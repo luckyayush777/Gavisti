@@ -33,7 +33,7 @@ public class Puzzle3Controller : MonoBehaviour
     {
         foreach(Puzzle3Piece piece in listOfPuzzlePieces)
         {
-            Color randomColor = colors[Random.Range(0, 4)];
+            Color randomColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 1.0f);
             
             piece.gameObject.GetComponent<MeshRenderer>().material.color = randomColor;
         }
@@ -62,7 +62,6 @@ public class Puzzle3Controller : MonoBehaviour
             {
                 puzzlePiece.IsPartOfPath = true;
                 //print(j + " ");
-                Puzzle3Display.colors[j] = puzzlePiece.GetComponent<MeshRenderer>().material.color;
                 j += 1;
 
             }
