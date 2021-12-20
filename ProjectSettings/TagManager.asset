@@ -6,6 +6,7 @@ TagManager:
   tags:
   - droppaplePiece
   - droppablePiece
+  - Barrier
   layers:
   - Default
   - TransparentFX

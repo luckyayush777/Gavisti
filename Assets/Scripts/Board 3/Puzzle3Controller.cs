@@ -34,7 +34,6 @@ public class Puzzle3Controller : MonoBehaviour
         foreach(Puzzle3Piece piece in listOfPuzzlePieces)
         {
             Color randomColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 1.0f);
-            
             piece.gameObject.GetComponent<MeshRenderer>().material.color = randomColor;
         }
     }

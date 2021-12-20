@@ -91,5 +91,9 @@ public class PlayerMovement : MonoBehaviour
         {
             hit.gameObject.GetComponent<Puzzle3Piece>().DropPiece();
         }
+        else if(hit.gameObject.tag == "Barrier")
+        {
+            print("hit barrier");
+        }
     }
 }
